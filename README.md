@@ -77,10 +77,7 @@ In this lab, we are going to write a Python program which can generate a network
 ---
 ## Contributors
 
-> TODO:
-> * Please replace "YOUR_NAME" and "YOUR_GITHUB_LINK" into yours
-
-* [YOUR_NAME](YOUR_GITHUB_LINK)
+* [Hank Lee](https://github.com/phlee1117)
 * [David Lu](https://github.com/yungshenglu)
 
 ---
