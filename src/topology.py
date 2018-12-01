@@ -41,7 +41,7 @@ def task():
     net = Mininet(topo = topo, controller = OVSController, link = TCLink)
     # Start a network
     net.start()
-    # Dump every hosts’ and switches’ connections
+    # Dump every hosts and switches connections
     dumpNodeConnections(net.hosts)
     # Enter the CLI mode
     CLI(net)
