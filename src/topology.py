@@ -42,7 +42,7 @@ def task():
     # Start a network
     net.start()
     # Dump every hosts’ and switches’ connections
-    dumpNodeConnections(net.hosts);
+    dumpNodeConnections(net.hosts)
     # Enter the CLI mode
     CLI(net)
 
