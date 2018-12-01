@@ -14,7 +14,7 @@ class Topo0(Topo):
         # add 6 hosts & 9 switches
         for i in range(6):
             host = self.addHost('h%s' %(i+1))
-        for i in range(9)
+        for i in range(9):
             switch = self.addSwitch('s%s' %(i+1))
         # add bidirectional links in topo0.png
         # between hosts & switches
