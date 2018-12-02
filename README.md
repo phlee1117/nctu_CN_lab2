@@ -16,9 +16,23 @@ In this lab, we are going to write a Python program which can generate a network
 ---
 ## Execution
 
-> TODO: 
-> * Describe how to execute your program
-> * Show the screenshot of using iPerf command in Mininet
+#### How to execute this program -> topology.py
+> Execute in the Ubuntu container(mininet & python installed)
+> If it shows errors like "mininet...File exists...", clean Mininet
+> `$ [sudo] mn -c`
+
+**1. Change directory to the location of the program**
+`$ cd /root/Network_Topology/src`
+**2. Add execute permission to the program**
+`$ chmod +x topology.py`
+**3. Run the program**
+`$ ./topology.py`
+**4. In cli-mode of mininet, run iperf in server & client, output the result of server**
+`mininet> h2 iperf -s -u -i 1 > ./out/result &`
+`mininet> h6 iperf -c 10.0.0.2 -u –i 1`
+**5. if program works properly**
+
+### Screenshot of using iPerf command in Mininet
 
 ---
 ## Description
@@ -61,9 +75,6 @@ In this lab, we are going to write a Python program which can generate a network
     * [Mininet Python API Reference Manual](http://mininet.org/api/annotated.html)
     * [A Beginner's Guide to Mininet](https://opensourceforu.com/2017/04/beginners-guide-mininet/)
     * [GitHub/OSE-Lab - 熟悉如何使用 Mininet](https://github.com/OSE-Lab/Learning-SDN/blob/master/Mininet/README.md)
-    * [菸酒生的記事本 – Mininet 筆記](https://blog.laszlo.tw/?p=81)
-    * [Hwchiu Learning Note – 手把手打造仿 mininet 網路](https://hwchiu.com/setup-mininet-like-environment.html)
-    * [阿寬的實驗室 – Mininet 指令介紹](https://ting-kuan.blog/2017/11/09/%E3%80%90mininet%E6%8C%87%E4%BB%A4%E4%BB%8B%E7%B4%B9%E3%80%91/)
     * [Mininet 學習指南](https://www.sdnlab.com/11495.html)
 * **Python**
     * [Python 2.7.15 Standard Library](https://docs.python.org/2/library/index.html)

@@ -43,6 +43,7 @@ def task():
     net.start()
     # Dump every hosts and switches connections
     dumpNodeConnections(net.hosts)
+    dumpNodeConnections(net.switches)
     # Enter the CLI mode
     CLI(net)
 
