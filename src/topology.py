@@ -33,7 +33,7 @@ class Topo0(Topo):
         self.addLink('s6', 's8', bw = 20, delay = '60us', loss = 6)
         self.addLink('s7', 's9', bw = 40, delay = '5ms', loss = 2)
         self.addLink('s8', 's9', bw = 50, delay = '4ms', loss = 3)
-        
+
 def task():
     # Create a topology
     topo = Topo0()
