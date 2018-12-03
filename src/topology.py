@@ -24,7 +24,6 @@ class Topo0(Topo):
         self.addLink('h4', 's4', bw = 12, delay = '40us', loss = 14)
         self.addLink('h5', 's5', bw = 15, delay = '30us', loss = 18)
         self.addLink('h6', 's6', bw = 3, delay = '5ms', loss = 2)
-        # between switches
         self.addLink('s1', 's7', bw = 23, delay = '1ms', loss = 8)
         self.addLink('s2', 's7', bw = 18, delay = '2ms', loss = 9)
         self.addLink('s3', 's7', bw = 15, delay = '3ms', loss = 5)
@@ -35,7 +34,7 @@ class Topo0(Topo):
         self.addLink('s8', 's9', bw = 50, delay = '4ms', loss = 3)
 
 def task():
-    # Create a topology
+    # Create the defined topology
     topo = Topo0()
     # Create and manage a network with a OvS controller and use TCLink
     net = Mininet(topo = topo, controller = OVSController, link = TCLink)

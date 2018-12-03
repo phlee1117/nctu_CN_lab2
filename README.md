@@ -37,11 +37,14 @@ In this lab, we are going to write a Python program which can generate a network
 `mininet> h2 iperf -s -u -i 1 > ./out/result &`
 `mininet> h6 iperf -c 10.0.0.2 -u –i 1`
 
-**5. The progrm would output the result of client, just like the followiㄒng screenshot**\
-The rate of packet loss is an approximate value from 21% ~ 26%
+**5. The progrm would output the result of client, just like the following screenshot**\
+The rate of packet loss is an approximate value from 21% ~ 26%\
 (check the red block of the screenshot)
 ### Screenshot of using iPerf command in Mininet
 ![client_result](./src/screenshot/client_result.png)
+
+**6. Enter `exit` or ctrl+c to exit cli**
+
 
 ---
 ## Description
@@ -83,16 +86,19 @@ or\
     Run iPerf in **server** mode
     - `-u`\
     Use UDP rather than TCP\
-    Bandwith with UDP is default 1 Mbps, you can also set it in client's command with `-b <bw>`
+    Bandwith with UDP is default 1 Mbps, and you can also set it in client's command with `-b <bw>`
     - `-i <interval>`\
     Set the interval time in seconds between periodic bandwidth, jitter, and loss reports.\
     If non-zero, a report is made every interval seconds of the bandwidth since the last report.\
     If zero, no periodic reports are printed.\
     Default is zero.
+    iPerf would sends for 10 seconds by default, so we get 10 reports. You can set the it in client's command with `-t <time>`
     - `> ./out/result`\
     Redirect the stdout to file ./out/result
+    In this case, We get the output from the server.
     - `&`\
-    Execute the command in the background without waiting for the command to finish
+    Execute the command in the background without waiting for the command to finish.\
+    We let server run in the background, so we can run the client at the same time.
 - `h6 iperf -c 10.0.0.2 -u -i 1`
     - `h6`\
     Use the host 'h6'
@@ -104,20 +110,78 @@ or\
 
 ### Tasks
 
-> TODO:
-> * Describe how you finish this work step-by-step in detail
-
 1. **Environment Setup**
-
-
+    1. Join the GitHub Classroom in order to get an initial repository prepared by TAs.
+    2. Login the personal container.\
+    `IP address:140.113.195.69`
+    `Port: last 5 digits of student ID`
+    Login as root, default password:cn2018\
+    (Remember to change it with command `passwd`)\
+    3. Clone GitHub repository
+    `$ git clone https://github.com/nctucn/lab2-phlee1117.git Network_Topology`
+    Then we get the git repository in folder Network_Topology under the /root/
+    4. Run Mininet for testing\
+    Use the command `mn` to get into mininet's interactive shell.
+    `$ mn`
+    `mininet>`
 2. **Example of Mininet**
+    Execute the example.py
+    1. First change directory to the code location.
+    `$ cd /root/Network_Topology/src/`
+    2. Add execute permission to the script using command `chmod`.\
+    `$ chmod +x example.py`
+    3. Run the example.\
+    `$ ./example.py`
 
+    The result of running example.py
+    ![example](./src/screenshot/example.png)
 
+    If you get errors like this\
+    ![error](./src/screenshot/error.png)
+    Try this command\
+    `$ mn -c`
+    This would clean up the mininet. (kill existed nodes or process, etc)
+    
 3. **Topology Generator**
-
+    1. View the topology you should generate\
+    Divide student ID by 3 to get the remainder\
+    Therefore mine is **topo0.png**
+    ![topo0](./src/topo/topo0.png)
+    2. Generate the topology via Mininet accroding to topo0.png\
+    I refer to the example.py to complete following tasks
+    - Add python path to shebang #!
+    `#!/usr/bin/python`
+    Tell the system program loader to use python as interpreter program.
+    - Import required modules
+    meanings of the modules are already explained above
+    - Create hosts and switches
+    In example.py, it creates a class inherited from mininet.topo.Topo, and define its own 'build' function inside the class.\
+    We can create our own class 'Topo0' and use that 'build' function to create nodes.\
+    `class Topo0(Topo):`
+    In the build function `def build(self):`
+    Use `self.addHost` & `self.addSwitch` to create hosts & switches.\
+    for example:`self.addHost(h1)`
+    - Construct links & Configure link bandwidth, delay, and loss rate
+    In the 'build' function of self-defined class, use `self.addLink` to establish links between nodes.\
+    Here we can set the option like bandwidth, delay, rate of packet loss, etc. Use the settings from topo0.png.
+    for example:`self.addLink('h1', 's1', bw = 10, delay='50us', loss = 12)`
+    3. Setting the Mininet
+    Use the created class as the topology structure with Open vSwitch & TCLink.
+    `net = Mininet(topo = Topo0, controller = OVSController, link = TCLink)`
+    After start it up, dump the infromation about hosts & switches
+    `net.start()`
+    `dumpNodeConnections(net.hosts)`
+    `dumpNodeConnections(net.switches)`
+    Then enter the command-line interface of mininet
+    `CLI(net)`
 
 4. **Measurement**
-
+    **---most have been mentioned in the execution part---**
+    - After finishing the code, we need to EXECUTE the program.
+    - We use the following 2 iPerf commands to measure if the topology we built is correct.
+    `$ mininet> h2 iperf -s -u -i 1 > ./out/result &`
+    `$ mininet> h6 iperf -c 10.0.0.2 -u –i 1`
+    - The ouput file 'result' would be in '/root/Newtork_Topology/src/out/result/'
 ---
 ## References
 
