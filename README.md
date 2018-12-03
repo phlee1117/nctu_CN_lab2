@@ -33,7 +33,7 @@ In this lab, we are going to write a Python program which can generate a network
 `----info about hosts & switches-----`
 `mininet>`
 
-**4. Run iperf in server h2 & client h6, output the result of server to file ./out/result**\
+**4. Run iPerf in server h2 & client h6, output the result of server to file ./out/result**\
 `mininet> h2 iperf -s -u -i 1 > ./out/result &`
 `mininet> h6 iperf -c 10.0.0.2 -u –i 1`
 
@@ -52,7 +52,7 @@ Mininet provides many classes in the certain module.\
 Use following ways to import modules in python script.\
 `from mininet[.xxx] import ooo`\
 or\
-`import mininet[.xxx]`\
+`import mininet[.xxx]`
 - **Meaning of Miniet API**
     - mininet.net.Mininet
         - Network emulation with hosts spawned in network namespaces.
@@ -69,15 +69,38 @@ or\
         - We use this to check hosts & switches created by Mininet.
     - mininet.cli.CLI
         - Simple command-line interface to talk to nodes.
-        - We use CLI to run iperf on certain hosts.
+        - We use CLI to run iPerf on certain hosts.
 
 ### iPerf Commands
 
-> TODO:
-> * Describe the meaning of iPerf command you used in detail
+> iPerf version 2.0.5 
 
-- **Meaning of iPerf command**
-
+**Meaning of iPerf command**
+- `h2 iperf -s -u -i 1 > ./out/result &`
+    - `h2`\
+    Use the host 'h2'
+    - `-s`\
+    Run iPerf in **server** mode
+    - `-u`\
+    Use UDP rather than TCP\
+    Bandwith with UDP is default 1 Mbps, you can also set it in client's command with `-b <bw>`
+    - `-i <interval>`\
+    Set the interval time in seconds between periodic bandwidth, jitter, and loss reports.\
+    If non-zero, a report is made every interval seconds of the bandwidth since the last report.\
+    If zero, no periodic reports are printed.\
+    Default is zero.
+    - `> ./out/result`\
+    Redirect the stdout to file ./out/result
+    - `&`\
+    Execute the command in the background without waiting for the command to finish
+- `h6 iperf -c 10.0.0.2 -u -i 1`
+    - `h6`\
+    Use the host 'h6'
+    - `-c <host>`\
+    Run iPerf in **client** mode, connecting to an iPerf server running on \<host\>.\
+    h2's ip is 10.0.0.2.
+    - `-u`, `-i <interval>`\
+    As mentioned above
 
 ### Tasks
 
