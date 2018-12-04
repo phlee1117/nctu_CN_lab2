@@ -116,7 +116,8 @@ or\
     `IP address:140.113.195.69`
     `Port: last 5 digits of student ID`
     Login as root, default password:cn2018\
-    (Remember to change it with command `passwd`)\
+    Then change the password with command `passwd`)\
+	Now password is **1234**
     3. Clone GitHub repository
     `$ git clone https://github.com/nctucn/lab2-phlee1117.git Network_Topology`
     Then we get the git repository in folder Network_Topology under the /root/
